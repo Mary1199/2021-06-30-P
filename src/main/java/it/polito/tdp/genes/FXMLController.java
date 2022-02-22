@@ -27,7 +27,7 @@ public class FXMLController {
     private Button btnRicerca;
 
     @FXML
-    private ComboBox<?> boxLocalizzazione;
+    private ComboBox<String> boxLocalizzazione;
 
     @FXML
     private TextArea txtResult;
@@ -37,9 +37,14 @@ public class FXMLController {
 
     }
 
+   
+	
     @FXML
     void doStatistiche(ActionEvent event) {
-
+        txtResult.clear();
+    	
+    	String s = boxLocalizzazione.getValue();
+    	txtResult.appendText("Nodi adiacenti: "+this.model.getAdiacenti(s));
     }
 
     @FXML
@@ -48,10 +53,19 @@ public class FXMLController {
         assert btnRicerca != null : "fx:id=\"btnRicerca\" was not injected: check your FXML file 'Scene.fxml'.";
         assert boxLocalizzazione != null : "fx:id=\"boxLocalizzazione\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Scene.fxml'.";
-
+        txtResult.clear();
+    	
+    	
+    	
     }
 
 	public void setModel(Model model) {
 		this.model = model;
+		this.boxLocalizzazione.getItems().addAll(this.model.getAllLocal());
+        this.model.creaGrafo();
+    	
+    	txtResult.appendText("Grafo creato\n");
+    	txtResult.appendText("Numero di Vertici: " +this.model.getNVertici());
+    	txtResult.appendText("Numero di Archi: " +this.model.getNArchi());
 	}
 }
