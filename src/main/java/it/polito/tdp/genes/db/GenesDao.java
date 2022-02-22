@@ -11,7 +11,7 @@ import java.util.Map;
 import it.polito.tdp.genes.model.Genes;
 import it.polito.tdp.genes.model.Interactions;
 
-
+//PROVA
 public class GenesDao {
 	
 	public List<Genes> getAllGenes(){
